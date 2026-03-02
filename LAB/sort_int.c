@@ -10,6 +10,18 @@ int compare(const void* a, const void* b) {
     return 0;
 }
 
+void bubble_sort(int32_t* array, size_t size) {
+    for (size_t i = 0; i < size - 1; i++) {
+        for (size_t j = 0; j < size - i - 1; j++) {
+            if (array[j] > array[j + 1]) {
+                int32_t temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+        }
+    }
+}
+
 void save_to_file(const char* filename, int32_t* array, size_t size) {
     FILE* fileout = fopen(filename, "w");
     if (fileout == NULL) {
@@ -56,8 +68,9 @@ int main(int argc, char** argv) {
     size_t size = 0;
     int32_t* array = get_array_from_file(argv[1], &size);
 
-    qsort(array, size, sizeof(int32_t), compare);
-
+    //qsort(array, size, sizeof(int32_t), compare);
+    bubble_sort(array, size);
+    
     save_to_file(argv[2], array, size);
 
     free(array);
