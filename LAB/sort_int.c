@@ -14,9 +14,9 @@ void bubble_sort(int32_t* array, size_t size) {
     for (size_t i = 0; i < size - 1; i++) {
         for (size_t j = 0; j < size - i - 1; j++) {
             if (array[j] > array[j + 1]) {
-                int32_t temp = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = temp;
+                array[j] ^= array[j + 1]; // a = a XOR b
+                array[j + 1] ^= array[j]; // b = b XOR a
+                array[j] ^= array[j + 1]; // a = a XOR b
             }
         }
     }
@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
 
     //qsort(array, size, sizeof(int32_t), compare);
     bubble_sort(array, size);
-    
+
     save_to_file(argv[2], array, size);
 
     free(array);
