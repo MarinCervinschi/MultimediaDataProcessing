@@ -9,7 +9,6 @@ all: $(BINS)
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 clean:
-	rm -f *.o
 	rm -rf *.dSYM
 
 fclean: clean
