@@ -4,7 +4,7 @@
 
 std::vector<int> read_from_file(const char* filename) {
     std::vector<int> v;
-    std::ifstream is(filename, std::ios::binary);
+    std::ifstream is(filename);
     if (!is) throw std::runtime_error("Could not open file for reading");
 
     int val;
